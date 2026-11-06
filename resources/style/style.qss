@@ -1,0 +1,135 @@
+QMenuBar, QMenu {
+    font-family: "JetBrainsMono Nerd Font Propo";
+    font-size: 9pt;
+}
+QMenuBar {
+    background: @win@;
+    border-bottom: 1px solid @line@;
+}
+QMenuBar::item {
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+QMenuBar::item:selected {
+    background: @accentTint@;
+}
+QMenu {
+    background: @win@;
+    border: 1px solid @line@;
+    padding: 4px 0;
+}
+QMenu::item {
+    padding: 5px 24px 5px 28px;
+}
+QMenu::item:selected {
+    background: @accentTint@;
+    color: @fg@;
+}
+QMenu::separator {
+    height: 1px;
+    background: @line@;
+    margin: 4px 0;
+}
+
+QToolBar {
+    background: @win@;
+    border: none;
+    border-bottom: 1px solid @line@;
+    padding: 3px 4px;
+    spacing: 2px;
+}
+QToolBar::separator {
+    width: 1px;
+    background: @line@;
+    margin: 4px 6px;
+}
+QToolButton {
+    padding: 4px 10px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+QToolButton:hover {
+    background: @btn@;
+    border-color: @line@;
+}
+QToolButton:pressed {
+    background: @accentTint@;
+}
+QToolButton:disabled {
+    color: @off@;
+}
+
+QGroupBox {
+    background: @win@;
+    border: 1px solid @line@;
+    border-radius: 4px;
+    margin-top: 9px;
+    padding: 8px 6px 6px 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px;
+    color: @accent@;
+}
+QGroupBox QGroupBox {
+    background: transparent;
+}
+QGroupBox QGroupBox::title {
+    color: @fg@;
+}
+
+QPushButton {
+    background: @btn@;
+    border: 1px solid @btnline@;
+    border-radius: 3px;
+    padding: 4px 10px;
+}
+QPushButton:hover {
+    border-color: @accent@;
+}
+QPushButton:pressed {
+    background: @accentTint@;
+}
+QPushButton:disabled {
+    color: @off@;
+    border-color: @line@;
+}
+
+QLineEdit {
+    background: @win@;
+    border: 1px solid @btnline@;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+QLineEdit:focus {
+    border-color: @accent@;
+}
+
+QStatusBar {
+    background: @win@;
+    border-top: 1px solid @line@;
+    color: @muted@;
+}
+QStatusBar::item {
+    border: none;
+}
+QToolTip {
+    background: @win@;
+    color: @fg@;
+    border: 1px solid @line@;
+    padding: 3px 6px;
+}
+
+QLabel#connectionStatus {
+    color: @muted@;
+    padding: 0 6px;
+}
+QLabel#connectionStatus[state="alarm"] {
+    color: @alarm@;
+    font-weight: bold;
+}
+
+QHeaderView *header = ui->dataTable->horizontalHeader();
+header->setSectionResizeMode(QHeaderView::ResizeToContents);
+header->setStretchLastSection(true);

@@ -1,0 +1,36 @@
+// Ресурсы Windows для MonitorIBP.exe: значок и сведения о файле
+// (Свойства → Подробно, имя программы в уведомлениях Windows).
+// Русские строки записаны кодами UTF-16 (\x041c = «М» и т.д.), поэтому
+// результат не зависит от того, в какой кодировке windres читает этот файл.
+
+#include "version.h"    // создаёт qmake из VERSION в MonitorIBP.pro
+
+IDI_ICON1 ICON "icons/app.ico"
+
+1 VERSIONINFO
+FILEVERSION     APP_VERSION_RC
+PRODUCTVERSION  APP_VERSION_RC
+FILEFLAGSMASK   0x3fL
+FILEFLAGS       0x0L
+FILEOS          0x40004L    // VOS_NT_WINDOWS32
+FILETYPE        0x1L        // VFT_APP
+FILESUBTYPE     0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041904b0"    // русский язык, Unicode
+        BEGIN
+            VALUE "CompanyName",      "Ruselt\0"
+            VALUE "FileDescription",  L"\x041c\x043e\x043d\x0438\x0442\x043e\x0440\x0438\x043d\x0433 \x0418\x0411\x041f\0"    // Мониторинг ИБП
+            VALUE "FileVersion",      APP_VERSION_RC_STR
+            VALUE "LegalCopyright",   L"\x00a9 2026 Ruselt\0"    // © 2026 Ruselt
+            VALUE "OriginalFilename", "MonitorIBP.exe\0"
+            VALUE "ProductName",      L"\x041c\x043e\x043d\x0438\x0442\x043e\x0440\x0438\x043d\x0433 \x0418\x0411\x041f\0"    // Мониторинг ИБП
+            VALUE "ProductVersion",   APP_VERSION_RC_STR
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0419, 1200
+    END
+END

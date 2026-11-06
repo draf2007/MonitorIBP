@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/fonts/JetBrainsMonoNerdFontPropo-Regular.ttf</file>
+        <file>resources/fonts/JetBrainsMonoNerdFontPropo-Bold.ttf</file>
+        <file>resources/style/style.qss</file>
+        <file>resources/icons/connect.svg</file>
+        <file>resources/icons/disconnect.svg</file>
+        <file>resources/icons/log.svg</file>
+        <file>resources/icons/traps.svg</file>
+        <file>resources/qml/UpsSchematic.qml</file>
+        <file>resources/qml/SchematicIcon.qml</file>
+        <file>resources/qml/SchematicBlock.qml</file>
+        <file>resources/qml/Icons.js</file>
+        <file>resources/qml/FlowPath.js</file>
+        <file>resources/qml/FlowLine.qml</file>
+        <file>resources/qml/LogoBackground.qml</file>
+        <file>resources/image/logo_tile.png</file>
+        <file>resources/icons/app.ico</file>
+        <file>resources/icons/app.svg</file>
+        <file>resources/icons/app.icns</file>
+        <file>resources/icons/tray/tray_battery.svg</file>
+        <file>resources/icons/tray/tray_bypass.svg</file>
+        <file>resources/icons/tray/tray_fault.svg</file>
+        <file>resources/icons/tray/tray_lowbat.svg</file>
+        <file>resources/icons/tray/tray_mains.svg</file>
+        <file>resources/icons/tray/tray_nolink.svg</file>
+        <file>resources/icons/tray/tray_outoff.svg</file>
+        <file>resources/icons/tray/tray_test.svg</file>
+    </qresource>
+</RCC>
