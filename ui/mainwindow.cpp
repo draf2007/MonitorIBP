@@ -303,6 +303,21 @@ MainWindow::MainWindow(ThemeManager *theme, QWidget *parent)
     ui->controlPanel->setScenario(m_shutdownScenario);
     ui->controlPanel->setDelays(settings.value("ups/shutdownDelay", 30).toInt(),
                                 settings.value("ups/restartDelay", 30).toInt());
+
+    ui->controlPanel->setDelays(settings.value("ups/shutdownDelay", 30).toInt(),
+                                settings.value("ups/restartDelay", 30).toInt());
+
+    const bool logBeeper = settings.value("log/beeper", true).toBool();
+    ui->controlPanel->setBeeperLogEnabled(logBeeper);
+    upsMonitor->setBeeperLogEnabled(logBeeper);
+    snmpMonitor->setBeeperLogEnabled(logBeeper);
+    QObject::connect(ui->controlPanel, &UpsControlPanel::beeperLogToggled, this, [this](bool enabled) {
+        upsMonitor->setBeeperLogEnabled(enabled);
+        snmpMonitor->setBeeperLogEnabled(enabled);
+        QSettings settings(settingsFilePath(), QSettings::IniFormat);
+        settings.setValue("log/beeper", enabled);
+    });
+
     QObject::connect(ui->controlPanel, &UpsControlPanel::commandRequested, this, &MainWindow::sendUpsCommand);
     QObject::connect(ui->controlPanel, &UpsControlPanel::delaysChanged, this, [this](int shutdownDelaySec, int restartDelaySec) {
         QSettings settings(settingsFilePath(), QSettings::IniFormat);

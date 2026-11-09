@@ -18,6 +18,7 @@ public:
     void disconnectFromPort();
     bool isConnected() const;
     void sendControlCommand(UpsCommand command, const UpsShutdownParams &params = UpsShutdownParams());
+    void setBeeperLogEnabled(bool enabled) { m_logBeeper = enabled; }
 
 signals:
     void connectionStatusChanged(bool connected);
@@ -95,6 +96,7 @@ private:
     int m_ptrtPollIndex = 0;
     UpsStatus m_loggedStatus;
     bool m_hasLoggedStatus = false;
+    bool m_logBeeper = true;
 
 };
 

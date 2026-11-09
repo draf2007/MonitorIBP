@@ -28,6 +28,7 @@ public:
     void setCardType(const QString &cardId);
 
     void sendControlCommand(UpsCommand command, const UpsShutdownParams &params = {});
+    void setBeeperLogEnabled(bool enabled) { m_logBeeper = enabled; }
 
 signals:
     void connectionStatusChanged (bool connected);
@@ -90,6 +91,8 @@ private:
 
     QElapsedTimer m_beeperHoldTimer;
     bool m_beeperHoldValue = false;
+    bool m_beeperChangePending = false;
+    bool m_logBeeper = true;
 
     bool m_shutdownCancelRequested = false;
 

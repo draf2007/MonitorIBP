@@ -26,10 +26,12 @@ public:
     void setDelays(int shutdownDelaySec, int restartDelaySec);
 
     void setTimedTestAvailable(bool available);
+    void setBeeperLogEnabled(bool enabled);
 
 signals:
     void commandRequested(UpsCommand command, const UpsShutdownParams &params);
     void delaysChanged(int shutdownDelaySec, int restartDelaySec);
+    void beeperLogToggled(bool enabled);
 
 private:
     Ui::UpsControlPanel *ui;

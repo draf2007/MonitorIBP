@@ -294,6 +294,16 @@
            </item>
           </layout>
          </item>
+         <item>
+          <widget class="QCheckBox" name="beeperLogCheck">
+           <property name="text">
+            <string>Писать в журнал состояние динамика.</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>

@@ -1,6 +1,9 @@
 #include "ui/upscontrolpanel.h"
 #include "ui_upscontrolpanel.h"
 #include <QMessageBox>
+#include <QCheckBox>
+#include <QSignalBlocker>
+
 
 static QString testResultText(UpsTestResult result)
 {
@@ -36,6 +39,7 @@ UpsControlPanel::UpsControlPanel(QWidget *parent)
     auto emitDelays = [this]() { emit delaysChanged(ui->shutdownDelaySpin->value(), ui->restartDelaySpin->value()); };
     QObject::connect(ui->shutdownDelaySpin, qOverload<int>(&QSpinBox::valueChanged), this, emitDelays);
     QObject::connect(ui->restartDelaySpin, qOverload<int>(&QSpinBox::valueChanged), this, emitDelays);
+    QObject::connect(ui->beeperLogCheck, &QCheckBox::toggled, this, &UpsControlPanel::beeperLogToggled);
 
     m_refreshTimer->setInterval(1000);
     QObject::connect(m_refreshTimer, &QTimer::timeout, this, &UpsControlPanel::updateControls);
@@ -207,4 +211,10 @@ void UpsControlPanel::updateControls()
     const bool beeperOn = known && m_status.beeperOn;
     ui->beeperButton->setText(beeperOn ? "Выключить динамик" : "Включить динамик");
     ui->beeperStateLabel->setText(!known ? QString("—") : beeperOn ? QString("● Динамик включен") : QString("○ Динамик выключен"));
+}
+
+void UpsControlPanel::setBeeperLogEnabled(bool enabled)
+{
+    const QSignalBlocker blocker(ui->beeperLogCheck);
+    ui->beeperLogCheck->setChecked(enabled);
 }

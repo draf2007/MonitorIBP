@@ -40,6 +40,7 @@ void SnmpUpsMonitor::connectToHost(const SnmpConnectionParams &params){
     m_driver = card.create();
     m_hasLastStatus = false;
     m_failedPolls = 0;
+    m_beeperChangePending = false;
     m_version = params.version;
     m_hostText = params.ip;
     m_lastSendErrno = 0;
@@ -558,12 +559,20 @@ void SnmpUpsMonitor::applyStatus(const SnmpValues &statusValues, const SnmpValue
     }
     status.inputLineBads = m_mainsLossCount;
 
-    if (m_beeperHoldTimer.isValid()) {
+    const bool beeperHeld = m_beeperHoldTimer.isValid();
+    if (beeperHeld) {
         if (status.beeperOn == m_beeperHoldValue || m_beeperHoldTimer.elapsed() > BeeperHoldMs) {
             m_beeperHoldTimer.invalidate();
         } else {
             status.beeperOn = m_beeperHoldValue;
         }
+    }
+
+    if (!beeperHeld && m_hasLastStatus && status.beeperOn != m_lastStatus.beeperOn && !m_beeperChangePending) {
+        m_beeperChangePending = true;
+        status.beeperOn = m_lastStatus.beeperOn;
+    } else {
+        m_beeperChangePending = false;
     }
 
     logStatusChanges(status, result.activeAlarms);
@@ -627,7 +636,7 @@ void SnmpUpsMonitor::logStatusChanges(const UpsStatus &status, const QStringList
         m_shutdownCancelRequested = false;
     }
 
-    if (m_hasLastStatus && status.beeperOn != m_lastStatus.beeperOn) {
+    if (m_logBeeper && m_hasLastStatus && status.beeperOn != m_lastStatus.beeperOn) {
         emit logMessage(status.beeperOn ? "Пищалка включена" : "Пищалка выключена");
     }
 

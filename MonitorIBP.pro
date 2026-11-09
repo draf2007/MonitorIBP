@@ -2,7 +2,7 @@ QT += widgets core serialport gui network svg quickwidgets
 
 CONFIG += c++17
 TARGET  = MonitorIBP
-VERSION = 1.1.0
+VERSION = 1.2.1
 # ---- Версия задаётся ТОЛЬКО строкой VERSION выше ----
 # qmake записывает её в resources/version.h, а оттуда версию берут
 # MonitorIBP.rc (свойства exe) и main.cpp (QApplication::applicationVersion).

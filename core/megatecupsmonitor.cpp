@@ -472,8 +472,8 @@ void MegatecUpsMonitor::logStatusChanges(const UpsStatus &status){
             emit logMessage("Аварии сняты");
         }
     }
-    if (!m_hasLoggedStatus || status.beeperOn != m_loggedStatus.beeperOn) {
-        emit logMessage(status.beeperOn ? "Пищалка включена" : "Пищалка выключена");
+    if (m_logBeeper && (!m_hasLoggedStatus || status.beeperOn != m_loggedStatus.beeperOn)) {
+        emit logMessage(status.beeperOn ? "Динамик включен" : "Динамик выключен");
     }
     m_loggedStatus = status;
     m_hasLoggedStatus = true;
